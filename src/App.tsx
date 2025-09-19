@@ -133,20 +133,20 @@ function App() {
                   return (
                     <li
                       key={task.id}
-                      className={`task-item ${isLoading ? "loading" : ""}`}
+className="task-item"
                     >
-                      <label className="task-label">
-                        <input
-                          type="checkbox"
-                          checked={task.completed}
-                          disabled={isLoading}
-                          onChange={() => toggleTask(task.id, task.completed)}
-                        />
-                        <span className={task.completed ? "completed" : ""}>
-                          {task.title}
-                        </span>
-                        {isLoading && <small className="loading-text">Atualizando...</small>}
-                      </label>
+                     <label className="task-label">
+  <input
+    type="checkbox"
+    checked={task.completed}
+    disabled={isLoading}
+    onChange={() => toggleTask(task.id, task.completed)}
+  />
+  <span className={task.completed ? "completed" : ""}>
+    {task.title}
+  </span>
+</label>
+
                       <button
                         className="delete-btn"
                         onClick={() => deleteTask(task.id)}

@@ -1,11 +1,15 @@
-/* Container geral com layout flex */
+/* ==============================
+   Layout geral
+============================== */
 .container {
   display: flex;
   height: 100vh;
   font-family: Arial, sans-serif;
 }
 
-/* Menu lateral */
+/* ==============================
+   Menu lateral
+============================== */
 .sidebar {
   width: 240px;
   background-color: #191450;
@@ -49,7 +53,9 @@
   font-weight: bold;
 }
 
-/* Conteúdo principal */
+/* ==============================
+   Conteúdo principal
+============================== */
 .main-content {
   flex-grow: 1;
   padding: 2rem;
@@ -75,7 +81,9 @@
   margin-bottom: 1rem;
 }
 
-/* Lista de tarefas */
+/* ==============================
+   Lista de tarefas
+============================== */
 .task-list {
   list-style: none;
   padding: 0;
@@ -91,17 +99,25 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 1px 3px rgba(24, 253, 70, 0.1),
-    0 1px 2px rgba(9, 230, 97, 0.06);
+              0 1px 2px rgba(9, 230, 97, 0.06);
   opacity: 1;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.task-item.loading {
-  opacity: 0.6;
-  pointer-events: none;
-  user-select: none;
+/* Animações para entrada e saída de tarefa */
+.task-item.entering {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
+.task-item.exiting {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* ==============================
+   Label da tarefa
+============================== */
 .task-label {
   display: flex;
   align-items: center;
@@ -122,6 +138,13 @@
   user-select: none;
 }
 
+/* Ícone ✔ para tarefas completas */
+.task-label span.completed::before {
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* Texto de loading */
 .loading-text {
   margin-left: 12px;
   color: #3b82f6;
@@ -129,7 +152,9 @@
   font-size: 0.8rem;
 }
 
-/* Botão excluir */
+/* ==============================
+   Botão excluir
+============================== */
 .delete-btn {
   background-color: #ef4444;
   border: none;
@@ -152,10 +177,50 @@
   opacity: 0.7;
 }
 
-/* Loading geral */
+/* ==============================
+   Loading geral
+============================== */
 .loading {
   padding: 2rem;
   font-size: 1.2rem;
   color: #334155;
 }
 
+/* ==============================
+   Acessibilidade (foco teclado)
+============================== */
+.user-btn:focus,
+.delete-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ==============================
+   Responsividade (telas pequenas)
+============================== */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .delete-btn {
+    min-width: auto;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
